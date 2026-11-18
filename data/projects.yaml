@@ -1,0 +1,11 @@
+# Liste des projets affichés sur /projects/ et /fr/projets/.
+# Une seule source pour les deux langues. Ajoute un bloc par repo :
+#
+# - name: "intune-pim-lab"
+#   url: "https://github.com/le6009/intune-pim-lab"
+#   description:
+#     en: "Short English description."
+#     fr: "Courte description en français."
+#   tags: [intune, pim]
+#
+[]

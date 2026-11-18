@@ -1,0 +1,7 @@
+{{- /*
+  Chroma (le moteur de coloration de Hugo) n'a pas de lexer KQL/Kusto.
+  Ce render hook est appelé pour chaque bloc ```kql et le colore avec le
+  lexer SQL, la syntaxe la plus proche (mots-clés, opérateurs, chaînes,
+  nombres). Limite connue : les commentaires // ne sont pas colorés.
+*/ -}}
+<div class="lang-kql">{{- transform.Highlight .Inner "sql" .Options -}}</div>

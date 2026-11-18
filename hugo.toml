@@ -1,0 +1,193 @@
+# =============================================================================
+#  Configuration Hugo — jesenlaplume.ca
+#  Doc : https://gohugo.io/configuration/  ·  Thème : themes/PaperMod (submodule)
+# =============================================================================
+
+# URL publique du site. En CI, le workflow la remplace par l'URL fournie par
+# GitHub Pages (utile tant que le domaine personnalisé n'est pas actif).
+baseURL = "https://jesenlaplume.ca/"
+title = "Jésen Laplume"   # [À VÉRIFIER] nom affiché
+theme = "PaperMod"
+timeZone = "America/Toronto"
+# Garder les noms de tags tels quels (pim, ai-security) au lieu de « Pim ».
+capitalizeListTitles = false
+
+# Génère robots.txt (PaperMod fournit le gabarit).
+enableRobotsTXT = true
+
+# -----------------------------------------------------------------------------
+#  Langues
+#  - L'anglais est la langue par défaut, servie à la racine (/).
+#  - Le français est servi sous /fr/.
+#  - Chaque langue a son propre dossier de contenu : un article peut donc
+#    exister dans une seule langue. Pour relier une traduction, mettre le même
+#    `translationKey` dans le front matter des deux versions.
+# -----------------------------------------------------------------------------
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    label = "English"
+    weight = 1
+    contentDir = "content/en"
+    [languages.en.params.homeInfoParams]
+      Title = "Hi, I'm Jésen 👋"
+      Content = """
+Systems administrator moving into **Microsoft 365 & Azure security engineering**.
+I write hands-on write-ups about Entra ID, PIM, Intune, Defender and my homelab.
+"""
+
+  [languages.fr]
+    label = "Français"
+    weight = 2
+    contentDir = "content/fr"
+    [languages.fr.params.homeInfoParams]
+      Title = "Salut, moi c'est Jésen 👋"
+      Content = """
+Administrateur système en route vers l'**ingénierie sécurité Microsoft 365 et Azure**.
+J'écris des write-ups concrets sur Entra ID, PIM, Intune, Defender et mon homelab.
+"""
+
+# -----------------------------------------------------------------------------
+#  Menus (un par langue). `pageRef` pointe vers le contenu de la langue
+#  courante, donc le lien reste valide même si l'URL change.
+# -----------------------------------------------------------------------------
+[[languages.en.menus.main]]
+  name = "Posts"
+  pageRef = "/posts"
+  weight = 10
+[[languages.en.menus.main]]
+  name = "Projects"
+  pageRef = "/projects"
+  weight = 20
+[[languages.en.menus.main]]
+  name = "Tags"
+  pageRef = "/tags"
+  weight = 30
+[[languages.en.menus.main]]
+  name = "About"
+  pageRef = "/about"
+  weight = 40
+[[languages.en.menus.main]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 50
+
+[[languages.fr.menus.main]]
+  name = "Articles"
+  pageRef = "/posts"
+  weight = 10
+[[languages.fr.menus.main]]
+  name = "Projets"
+  pageRef = "/projets"
+  weight = 20
+[[languages.fr.menus.main]]
+  name = "Tags"
+  pageRef = "/tags"
+  weight = 30
+[[languages.fr.menus.main]]
+  name = "À propos"
+  pageRef = "/a-propos"
+  weight = 40
+[[languages.fr.menus.main]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 50
+
+# -----------------------------------------------------------------------------
+#  Taxonomies : seulement les tags (pas de catégories).
+# -----------------------------------------------------------------------------
+[taxonomies]
+  tag = "tags"
+
+# -----------------------------------------------------------------------------
+#  Sorties : HTML + RSS pour l'accueil, les sections et les tags.
+#  Flux : /index.xml (EN), /fr/index.xml (FR), /tags/<tag>/index.xml, etc.
+# -----------------------------------------------------------------------------
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML", "RSS"]
+
+# -----------------------------------------------------------------------------
+#  Rendu Markdown
+# -----------------------------------------------------------------------------
+[markup]
+  [markup.goldmark.renderer]
+    # Le HTML brut dans le Markdown est retiré du site publié. C'est voulu :
+    # la checklist d'anonymisation (commentaire HTML en bas de chaque article)
+    # n'apparaît donc ni à l'écran ni dans le code source de la page.
+    unsafe = false
+  [markup.highlight]
+    # Coloration au moment du build (Chroma) : aucun JavaScript côté client.
+    # PaperMod fournit les couleurs via CSS, d'où noClasses = false.
+    noClasses = false
+    codeFences = true
+    guessSyntax = false
+    lineNos = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+# -----------------------------------------------------------------------------
+#  Vie privée : on désactive tous les services tiers intégrés à Hugo.
+#  Aucun de ces services n'est configuré, mais on ferme la porte quand même.
+# -----------------------------------------------------------------------------
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.x]
+    disable = true
+  [privacy.youtube]
+    disable = true
+
+# -----------------------------------------------------------------------------
+#  Paramètres du thème PaperMod
+#  Référence : themes/PaperMod/ et https://github.com/adityatelange/hugo-PaperMod/wiki
+# -----------------------------------------------------------------------------
+[params]
+  env = "production"            # active les balises meta SEO / OpenGraph
+  description = "Microsoft 365 & Azure security write-ups, homelab and projects."
+  author = "Jésen"
+  defaultTheme = "auto"         # suit le mode clair/sombre du système
+  displayFullLangName = true    # sélecteur : « Français » plutôt que « Fr »
+  disableThemeToggle = false    # garde le bouton pour forcer clair/sombre
+  DateFormat = "2006-01-02"
+
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  TocOpen = false
+  ShowWordCount = false
+  ShowShareButtons = false      # les boutons de partage pointent vers des tiers
+  ShowRssButtonInSectionTermList = true
+  ShowFullTextinRSS = true
+
+  # Texte affiché en haut à gauche (logo).
+  [params.label]
+    text = "Jésen Laplume"
+
+  # Contact : LinkedIn et GitHub seulement. Aucune adresse courriel.
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/j%C3%A9sen/"
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/le6009"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "index.xml"
+
+  [params.assets]
+    # Empreinte SRI sur la feuille de style (intégrité vérifiée par le navigateur).
+    disableFingerprinting = false

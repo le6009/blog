@@ -1,0 +1,16 @@
+{{- /* Affiche data/projects.yaml dans la langue de la page. */ -}}
+{{- $lang := .Page.Language.Lang -}}
+{{- $projects := hugo.Data.projects | default slice -}}
+{{- if $projects }}
+<ul class="projects">
+  {{- range $projects }}
+  <li>
+    <a href="{{ .url }}" rel="noopener">{{ .name }}</a>
+    {{- with index .description $lang | default (index .description "en") }} : {{ . }}{{ end }}
+    {{- with .tags }}<br><small>{{ delimit . " · " }}</small>{{ end }}
+  </li>
+  {{- end }}
+</ul>
+{{- else }}
+<p><em>{{ if eq $lang "fr" }}Projets à venir.{{ else }}Projects coming soon.{{ end }}</em></p>
+{{- end }}

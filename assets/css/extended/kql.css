@@ -1,0 +1,4 @@
+/* Blocs KQL colorés avec le lexer SQL (voir layouts/_markup/render-codeblock-kql.html) :
+   le lexer marque comme « erreur » ce qu'il ne comprend pas (p. ex. accents dans
+   un commentaire //). On retire le rouge d'erreur dans ces blocs seulement. */
+.lang-kql .chroma .err { color: inherit; background: none; }
